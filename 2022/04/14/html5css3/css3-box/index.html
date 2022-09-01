@@ -1,0 +1,530 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>前端笔记 CSS3 盒子模型 | xiangxun</title><meta name="keywords" content="前端,CSS3,盒子模型"><meta name="author" content="xiangxun"><meta name="copyright" content="xiangxun"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="在 CSS 中，所有的元素都被一个个的“盒子（box）”包围着，理解这些“盒子”的基本原理，是我们使用CSS实现准确布局、处理元素排列的关键。 标准盒模型 CSS中组成一个块级盒子需要:  Content box: 这个区域是用来显示内容，大小可以通过 width 和 height设置. Padding box: 包围在内容区域外部的空白区域； 大小通过 padding 相关属性设置。 Borde">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端笔记 CSS3 盒子模型">
+<meta property="og:url" content="https://xiangxun.github.io/2022/04/14/html5css3/css3-box/index.html">
+<meta property="og:site_name" content="xiangxun">
+<meta property="og:description" content="在 CSS 中，所有的元素都被一个个的“盒子（box）”包围着，理解这些“盒子”的基本原理，是我们使用CSS实现准确布局、处理元素排列的关键。 标准盒模型 CSS中组成一个块级盒子需要:  Content box: 这个区域是用来显示内容，大小可以通过 width 和 height设置. Padding box: 包围在内容区域外部的空白区域； 大小通过 padding 相关属性设置。 Borde">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg">
+<meta property="article:published_time" content="2022-04-14T04:21:42.000Z">
+<meta property="article:modified_time" content="2022-08-31T09:23:30.879Z">
+<meta property="article:author" content="xiangxun">
+<meta property="article:tag" content="前端">
+<meta property="article:tag" content="CSS3">
+<meta property="article:tag" content="盒子模型">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://xiangxun.github.io/2022/04/14/html5css3/css3-box/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="code-BhxieShPC3"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '前端笔记 CSS3 盒子模型',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-08-31 17:23:30'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/favicon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">23</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">xiangxun</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">前端笔记 CSS3 盒子模型</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-04-14T04:21:42.000Z" title="发表于 2022-04-14 12:21:42">2022-04-14</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-08-31T09:23:30.879Z" title="更新于 2022-08-31 17:23:30">2022-08-31</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>10分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="前端笔记 CSS3 盒子模型"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>在 CSS 中，所有的元素都被一个个的“盒子（box）”包围着，理解这些“盒子”的基本原理，是我们使用CSS实现准确布局、处理元素排列的关键。</p>
+<h3 id="标准盒模型">标准盒模型</h3>
+<p>CSS中组成一个块级盒子需要:</p>
+<ul>
+<li><strong>Content box</strong>: 这个区域是用来显示内容，大小可以通过 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/width">width</a> 和 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/height">height</a>设置.</li>
+<li><strong>Padding box</strong>: 包围在内容区域外部的空白区域； 大小通过 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/padding">padding</a> 相关属性设置。</li>
+<li><strong>Border box</strong>: 边框盒包裹内容和内边距。大小通过 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/border">border</a> 相关属性设置。</li>
+<li><strong>Margin box</strong>: 这是最外面的区域，是盒子和其他元素之间的空白区域。大小通过 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/margin">margin</a> 相关属性设置。</li>
+</ul>
+<img width="500px" src="https://cdn.nlark.com/yuque/0/2022/jpeg/12364166/1652278783910-6ab1aef5-fed7-41e7-957b-b5f079425862.jpeg" referrerpolicy="no-referrer">
+<h3 id="外边距-margin">外边距 margin</h3>
+<p>外边距是盒子周围一圈看不到的空间。它会把其他元素从盒子旁边推开。 外边距属性值可以为正也可以为负。设置负值会导致和其他内容重叠。无论使用标准模型还是替代模型，外边距总是在计算可见部分后额外添加。</p>
+<h4 id="外边距折叠"><strong>外边距折叠</strong></h4>
+<p>理解外边距的一个关键是外边距折叠的概念。如果你有两个外边距相接的元素，这些外边距将合并为一个外边距，即最大的单个外边距的大小。</p>
+<img width="500px" src="https://cdn.nlark.com/yuque/0/2022/jpeg/12364166/1652291097900-e45cdc09-164b-4784-bb72-e5dfdc93a305.jpeg" referrerpolicy="no-referrer">
+<h3 id="边框-border">边框 border</h3>
+<p>边框是在边距和填充框之间绘制的。<br>
+在标准的盒模型，边框的大小将添加到框的宽度和高度。在替代盒模型，那么边框的大小会使内容框更小，因为它会占用一些可用的宽度和高度。<br>
+为边框设置样式时，有大量的属性可以使用——有四个边框，每个边框都有样式、宽度和颜色，我们可能需要对它们进行操作。<br>
+可以使用<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/border">border</a>属性一次设置所有四个边框的宽度、颜色和样式。<br>
+分别设置每边的宽度、颜色和样式，可以使用：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/border-top">border-top</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/border-right">border-right</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/border-bottom">border-bottom</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/border-left">border-left</a></li>
+</ul>
+<p>设置所有边的颜色、样式或宽度，请使用以下属性：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/border-width">border-width</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/border-style">border-style</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/border-color">border-color</a></li>
+</ul>
+<p>设置单边的颜色、样式或宽度，可以使用最细粒度的普通属性之一：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/border-top-width">border-top-width</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/border-top-style">border-top-style</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/border-top-color">border-top-color</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/border-right-width">border-right-width</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/border-right-style">border-right-style</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/border-right-color">border-right-color</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/border-bottom-width">border-bottom-width</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/border-bottom-style">border-bottom-style</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/border-bottom-color">border-bottom-color</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/border-left-width">border-left-width</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/border-left-style">border-left-style</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/border-left-color">border-left-color</a></li>
+</ul>
+<p><code>border</code>：简写属性</p>
+<ol>
+<li>方向</li>
+</ol>
+<p>在<code>border-width</code> 、 <code>border-color</code> 、<code>border-style</code>中设定几个值就决定了对应方向的宽度、颜色或样式</p>
+<ul>
+<li>四个值：<code>上 右 下 左</code></li>
+<li>三个值：<code>上 左右 下</code></li>
+<li>两个值：<code>上下 左右</code></li>
+<li>一个值：<code>上下左右</code></li>
+</ul>
+<blockquote>
+<p>顺序是按顺时针方向设置的，剩下的可以由矩形的对称性推导出来</p>
+</blockquote>
+<ol>
+<li>可以同时设置边框所有的相关样式，并且没有顺序要求</li>
+</ol>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box1</span> &#123;</span><br><span class="line">  <span class="attribute">border-width</span>: <span class="number">5px</span> <span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">border-color</span>: <span class="number">#000</span> red orange;</span><br><span class="line">  <span class="comment">/* </span></span><br><span class="line"><span class="comment">      none   无边框</span></span><br><span class="line"><span class="comment">    	solid  实线 </span></span><br><span class="line"><span class="comment">    	dotted 点状虚线 </span></span><br><span class="line"><span class="comment">    	dashed 虚线 </span></span><br><span class="line"><span class="comment">    	double 双线 </span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">  <span class="attribute">border-style</span>: solid dotted dashed double;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* 可简写*/</span></span><br><span class="line"><span class="selector-class">.box2</span> &#123;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#000</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://codepen.io/xiangxun/embed/LYQZqJd">点击查看【codepen】</a></p>
+<h3 id="内边距-padding">内边距 padding</h3>
+<p>内边距位于边框和内容区域之间。与外边距不同，您不能有负数量的内边距，所以值必须是0或正的值。应用于元素的任何背景都将显示在内边距后面，内边距通常用于将内容推离边框。</p>
+<p>我们可以使用<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/padding">padding</a>简写属性控制元素所有边，或者每边单独使用等价的普通属性：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/padding-top">padding-top</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/padding-right">padding-right</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/padding-bottom">padding-bottom</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/padding-left">padding-left</a></li>
+</ul>
+<h3 id="替代（IE）盒模型">替代（IE）盒模型</h3>
+<p>盒模型有 2 种：标准盒模型和 IE 盒模型，本别是由 W3C 和 IExplore 制定的标准。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box2</span> &#123;</span><br><span class="line">  <span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">10px</span> solid <span class="number">#000</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">50px</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">10px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.box3</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">10px</span> solid <span class="number">#000</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">50px</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">10px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<img src="https://cdn.nlark.com/yuque/0/2022/png/12364166/1652357727469-cf3b6b5e-731e-442b-b027-15b5c5c80c1f.png#clientId=u61b96fe3-8c30-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=301&id=ufa9f30a9&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1203&originWidth=1265&originalType=binary&ratio=1&rotation=0&showTitle=false&size=176468&status=done&style=none&taskId=u188fb75a-02dc-4981-a1c7-13fe3fde4b2&title=&width=316" referrerpolicy="no-referrer">             
+<img src="https://cdn.nlark.com/yuque/0/2022/png/12364166/1652357756125-8c99f63d-0037-4697-aeaa-60822ec91038.png#clientId=u61b96fe3-8c30-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=302&id=u59720a9f&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1206&originWidth=1260&originalType=binary&ratio=1&rotation=0&showTitle=false&size=171419&status=done&style=none&taskId=ue546bf36-5b90-4e6a-bc97-c69686c2b9a&title=&width=315" referrerpolicy="no-referrer">
+<p>标准盒模型认为：盒子的实际尺寸 = 内容（设置的宽/高） + 内边距 + 边框<br>
+所以 .box2 元素内容的宽度就为 300px，而实际的宽度则是 width + padding-left + padding-right + border-left-width + border-right-width = 300 + 10 + 10 + 10 + 10 = 340。<br>
+IE 盒模型认为：盒子的实际尺寸 = 设置的宽/高 = 内容 + 内边距 + 边框<br>
+.box3 元素所占用的实际宽度为 300px，而内容的真实宽度则是 width - padding-left - padding-right - border-left-width - border-right-width = 300 - 10 - 10 - 10 - 10 = 260。<br>
+现在高版本的浏览器基本上默认都是使用标准盒模型，在 CSS3 中新增了一个属性<code> box-sizing</code>，可以来设置盒子使用什么标准，它有 2 个值：</p>
+<ul>
+<li>content-box：标准盒模型，width、height设置的是content的大小；</li>
+<li>border-box：IE 盒模型，width、height设置的是border的大小；</li>
+</ul>
+<p><code>.box &#123;   box-sizing: border-box; &#125; </code><br>
+如果你希望所有元素都使用替代模式，而且确实很常用，设置 box-sizing 在 <html> 元素上，然后设置所有元素继承该属性，正如下面的例子。如果想要深入理解，请看 <a target="_blank" rel="noopener" href="https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/">the CSS Tricks article on box-sizing</a>。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">html</span> &#123;   </span><br><span class="line">  <span class="attribute">box-sizing</span>: border-box; &#125; </span><br><span class="line">*, *<span class="selector-pseudo">::before</span>, *<span class="selector-pseudo">::after</span>&#123;   </span><br><span class="line">  <span class="attribute">box-sizing</span>: inherit; &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="浏览器默认样式">浏览器默认样式</h3>
+<p>清除浏览器默认样式方式</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://meyerweb.com/eric/tools/css/reset/">reset.css</a></li>
+<li><a target="_blank" rel="noopener" href="https://necolas.github.io/normalize.css/latest/normalize.css">Normalize.css</a></li>
+</ul>
+<h3 id="文档流-flow">文档流 flow</h3>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/xiangxun-monyk/nvg2zx/vag0n4?view=doc_embed">Normal flow布局</a><br>
+flow “文档流”或“流式布局”<br>
+在 CSS 的世界中，会把内容按照从左到右、从上到下的顺序进行排列显示。正常情况下会把页面分割成一行一行的显示，而每行又可能由多列组成，所以从视觉上看起来就是从上到下从左到右，而这就是 CSS 中的流式布局，又叫文档流。文档流就像水一样，能够自适应所在的容器，一般它有如下几个特性：</p>
+<ul>
+<li>块级元素默认会占满整行，所以多个块级盒子之间是从上到下排列的；</li>
+<li>内联元素默认会在一行里一列一列的排布，当一行放不下的时候，会自动切换到下一行继续按照列排布；</li>
+</ul>
+<p><strong>如何脱离文档流 out of flow 呢？</strong><br>
+脱流文档流指节点脱流正常文档流后，在正常文档流中的其他节点将忽略该节点并填补其原先空间。文档一旦脱流，计算其父节点高度时不会将其高度纳入，脱流节点不占据空间。有两种方式可以让元素脱离文档流：浮动和定位。</p>
+<ul>
+<li>使用浮动（float）会将元素脱离文档流，移动到容器左/右侧边界或者是另一个浮动元素旁边，该浮动元素之前占用的空间将被别的元素填补，另外浮动之后所占用的区域不会和别的元素之间发生重叠；</li>
+<li>使用绝对定位（position: absolute;）或者固定定位（position: fixed;）也会使得元素脱离文档流，且空出来的位置将自动被后续节点填补。</li>
+</ul>
+<h3 id="盒子布局模式-display-属性">盒子布局模式 : display 属性</h3>
+<p>盒子布局模式 Box Layout Modes是通过display属性定义的<br>
+<img width="500px" src="https://cdn.nlark.com/yuque/0/2022/jpeg/12364166/1652386523473-28667e38-87d7-45e4-9a71-f354ee2357d3.jpeg" referrerpolicy="no-referrer"></p>
+<p>CSS里，HTML中的元素是以盒模型方式来显示，但是一个元素会成为(generate)一个什么类型的盒子，要如何布局，是通过display属性来定义的，<br>
+display属性定义了一个元素（盒子）的两种显示类型 display type ：<code>outer display type``inner display type</code> 一个是定义盒子在文档流(in flow)中是如何布局的，或者说在哪种布局环境(formatting context)中，另一个是在这个盒子内部的元素要如何布局，也就是给内部的元素提供了一个布局环境(formatting context)</p>
+<p>Values are defined as follows:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>&lt;display-outside&gt;</code></strong></td>
+<td><strong>block  inline</strong>  run-in</td>
+</tr>
+<tr>
+<td><strong><code>&lt;display-inside&gt;</code></strong></td>
+<td>**flow ** flow-root  table ** flex  grid ** ruby</td>
+</tr>
+<tr>
+<td><strong><code>&lt;display-listitem&gt;</code></strong></td>
+<td><display-outside>? &amp;&amp; [ flow | flow-root ]? &amp;&amp; list-item</td>
+</tr>
+<tr>
+<td><strong><code>&lt;display-internal&gt;</code></strong></td>
+<td>table-row-group | table-header-group | table-footer-group | table-row | table-cell | table-column-group | table-column | table-caption |  ruby-base | ruby-text | ruby-base-container | ruby-text-container</td>
+</tr>
+<tr>
+<td><strong><code>&lt;display-box&gt;</code></strong></td>
+<td>contents  <strong>none</strong></td>
+</tr>
+<tr>
+<td><strong><code>&lt;display-legacy&gt;</code></strong></td>
+<td><strong>inline-block</strong>  inline-table  inline-flex  inline-grid</td>
+</tr>
+</tbody>
+</table>
+<p>The <a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-display-3/#propdef-display">display</a> property defines an element’s <strong>display type</strong>, which consists of the two basic qualities of how an element generates boxes:</p>
+<ul>
+<li>the <strong>inner display type</strong>, which defines (if it is a <a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-display-3/#replaced-element">non-replaced element</a>) the kind of <a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-display-3/#formatting-context">formatting context</a> it generates, dictating how its descendant boxes are laid out. (The inner display of a replaced element is outside the scope of CSS.)</li>
+<li>the <strong>outer display type</strong>, which dictates how the <a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-display-3/#principal-box">principal box</a> itself participates in <a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-display-3/#flow-layout">flow layout</a>.</li>
+</ul>
+<h4 id=""></h4>
+<h4 id="Outer-Display-Roles-for-Flow-Layou">Outer Display Roles for Flow Layou</h4>
+<p><strong>block</strong></p>
+<blockquote>
+<p>The element generates a box that is <strong>block-level</strong> when placed in <a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-display-3/#flow-layout">flow layout</a>.</p>
+</blockquote>
+<ul>
+<li>生成<strong>块级盒子</strong>
+<ul>
+<li>占满一行，默认继承父元素的宽度；多个块元素将从上到下进行排列；</li>
+<li>设置 width/height 将会生效；</li>
+<li>设置 padding 和 margin 将会生效；</li>
+</ul>
+</li>
+</ul>
+<p><strong>inline</strong></p>
+<blockquote>
+<p>The element generates a box that is <strong>inline-level</strong> when placed in <a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-display-3/#flow-layout">flow layout</a></p>
+</blockquote>
+<ul>
+<li>生成<strong>内联盒子</strong>
+<ul>
+<li>不会占满一行，宽度随着内容而变化；多个 inline 元素将按照从左到右的顺序在一行里排列显示，如果一行显示不下，则自动换行；</li>
+<li>设置 width/height 将不会生效；</li>
+<li>设置竖直方向上的 padding 和 margin 将不会生效；</li>
+</ul>
+</li>
+</ul>
+<h4 id="display-legacy">display-legacy</h4>
+<p>Precomposed Inline-level Display Values<br>
+<strong>inline-block</strong><br>
+inline-bolck 等价于 inline flow-root</p>
+<ul>
+<li>是行内块元素，不单独占满一行，可以看成是能够在一行里进行左右排列的块元素；</li>
+<li>设置 width/height 将会生效；</li>
+<li>设置 padding 和 margin 将会生效；</li>
+</ul>
+<p>对内方面，其实就是把元素当成了容器，里面包裹着文本或者其他子元素。container box 的类型依据 display 的值不同，分为 4 种：</p>
+<ul>
+<li>block container：建立 BFC 或者 IFC；</li>
+<li>flex container：建立 FFC；</li>
+<li>grid container：建立 GFC;</li>
+</ul>
+<p>值得一提的是如果把 img 这种替换元素（replaced element）申明为 block 是不会产生 container box 的，因为替换元素比如 img 设计的初衷就仅仅是通过 src 把内容替换成图片，完全没考虑过会把它当成容器。</p>
+<p>The following informative table summarizes the values of <a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-display-3/#propdef-display">display</a>:</p>
+<table>
+<thead>
+<tr>
+<th>**Short <a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-display-3/#propdef-display">display**</a></th>
+<th>**Full <a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-display-3/#propdef-display">display**</a></th>
+<th><strong>Generated box</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-display-3/#valdef-display-none">none</a></td>
+<td>—</td>
+<td>subtree omitted from <a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-display-3/#box-tree">box tree</a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-display-3/#valdef-display-contents">contents</a></td>
+<td>—</td>
+<td>element replaced by contents in <a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-display-3/#box-tree">box tree</a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-display-3/#valdef-display-block"><strong>block</strong></a></td>
+<td><strong>block flow</strong></td>
+<td><a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-display-3/#block-level"><strong>block-level</strong></a>**    <strong><a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-display-3/#block-container"><strong>block container</strong></a></strong>    aka **<a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-display-3/#block-box"><strong>block box</strong></a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-display-3/#valdef-display-flow-root">flow-root</a></td>
+<td>block flow-root</td>
+<td><a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-display-3/#block-level">block-level</a>    <a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-display-3/#block-container">block container</a></td>
+</tr>
+<tr>
+<td>that establishes a new <a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-display-3/#block-formatting-context">block formatting context</a>(<a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-display-3/#bfc">BFC</a>)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-display-3/#valdef-display-inline"><strong>inline</strong></a></td>
+<td><strong>inline flow</strong></td>
+<td><a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-display-3/#inline-box"><strong>inline box</strong></a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-display-3/#valdef-display-inline-block"><strong>inline-block</strong></a></td>
+<td><strong>inline flow-root</strong></td>
+<td><a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-display-3/#inline-level"><strong>inline-level</strong></a>**    <strong><a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-display-3/#block-container"><strong>block container</strong></a></strong>    aka inline block**</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-display-3/#valdef-display-run-in">run-in</a></td>
+<td>run-in flow</td>
+<td><a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-display-3/#run-in">run-in box</a></td>
+</tr>
+<tr>
+<td>(<a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-display-3/#inline-box">inline box</a>  with special box-tree-munging rules)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-display-3/#valdef-display-list-item">list-item</a></td>
+<td>block flow list-item</td>
+<td><a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-display-3/#block-box">block box</a>  with additional <a target="_blank" rel="noopener" href="https://www.w3.org/TR/CSS2/generate.html#lists">marker box</a></td>
+</tr>
+<tr>
+<td>inline list-item</td>
+<td>inline flow list-item</td>
+<td><a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-display-3/#inline-box">inline box</a>  with additional <a target="_blank" rel="noopener" href="https://www.w3.org/TR/CSS2/generate.html#lists">marker box</a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-display-3/#valdef-display-flex"><strong>flex</strong></a></td>
+<td><strong>block flex</strong></td>
+<td><a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-display-3/#block-level"><strong>block-level</strong></a>**    **<a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-flexbox-1/#flex-container"><strong>flex container</strong></a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-display-3/#valdef-display-inline-flex">inline-flex</a></td>
+<td>inline flex</td>
+<td><a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-display-3/#inline-level">inline-level</a>    <a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-flexbox-1/#flex-container">flex container</a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-display-3/#valdef-display-grid"><strong>grid</strong></a></td>
+<td><strong>block grid</strong></td>
+<td><a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-display-3/#block-level"><strong>block-level</strong></a>**    **<a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-grid-2/#grid-container"><strong>grid container</strong></a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-display-3/#valdef-display-inline-grid">inline-grid</a></td>
+<td>inline grid</td>
+<td><a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-display-3/#inline-level">inline-level</a>    <a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-grid-2/#grid-container">grid container</a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-display-3/#valdef-display-ruby">ruby</a></td>
+<td>inline ruby</td>
+<td><a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-display-3/#inline-level">inline-level</a>    <a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-ruby-1/#ruby-container">ruby container</a></td>
+</tr>
+<tr>
+<td>block ruby</td>
+<td>block ruby</td>
+<td><a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-display-3/#block-box">block box</a>    containing <a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-ruby-1/#ruby-container">ruby container</a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-display-3/#valdef-display-table">table</a></td>
+<td>block table</td>
+<td><a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-display-3/#block-level">block-level</a>    <a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-tables-3/#table-wrapper-box">table wrapper box</a></td>
+</tr>
+<tr>
+<td>containing <a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-tables-3/#table-grid-box">table grid box</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-display-3/#valdef-display-inline-table">inline-table</a></td>
+<td>inline table</td>
+<td><a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-display-3/#inline-level">inline-level</a>    <a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-tables-3/#table-wrapper-box">table wrapper box</a></td>
+</tr>
+<tr>
+<td>containing <a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-tables-3/#table-grid-box">table grid box</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-display-3/#typedef-display-internal"><display-internal></a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>types</td>
+<td>—</td>
+<td><a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-display-3/#layout-specific-display">layout-specific internal box</a></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<h3 id="参考资料">参考资料</h3>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-box-3/">CSS Box Model Module Level 3</a><br/><br>
+<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Learn/CSS/Building_blocks/The_box_model">盒模型 - 学习 Web 开发 | MDN</a><br/><br>
+<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/box-sizing">box-sizing - CSS（层叠样式表） | MDN</a><br/><br>
+<a target="_blank" rel="noopener" href="https://juejin.cn/post/6941206439624966152">1.5 万字 CSS 基础拾遗（核心知识、常见需求） - 掘金</a><br/><br>
+<a target="_blank" rel="noopener" href="https://yachen168.github.io/article/display.html">CSS 原理 - 你所不知道的 display</a><br/></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">xiangxun</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://xiangxun.github.io/2022/04/14/html5css3/css3-box/">https://xiangxun.github.io/2022/04/14/html5css3/css3-box/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://xiangxun.github.io" target="_blank">xiangxun</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%89%8D%E7%AB%AF/">前端</a><a class="post-meta__tags" href="/tags/CSS3/">CSS3</a><a class="post-meta__tags" href="/tags/%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B/">盒子模型</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/04/14/html5css3/css3-normal-flow/"><img class="prev-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">前端笔记 CSS3 Normal flow</div></div></a></div><div class="next-post pull-right"><a href="/2022/04/12/html5css3/css3-rules-selector/"><img class="next-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">前端笔记 CSS3语法、选择器</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/04/14/html5css3/css3-normal-flow/" title="前端笔记 CSS3 Normal flow"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-14</div><div class="title">前端笔记 CSS3 Normal flow</div></div></a></div><div><a href="/2022/04/16/html5css3/css3-display-flex/" title="前端笔记 CSS3 Flex布局"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-16</div><div class="title">前端笔记 CSS3 Flex布局</div></div></a></div><div><a href="/2022/04/12/html5css3/css3-rules-selector/" title="前端笔记 CSS3语法、选择器"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-12</div><div class="title">前端笔记 CSS3语法、选择器</div></div></a></div><div><a href="/2021/11/12/bim/bim-1/" title="BIM BIM模型轻量化"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-11-12</div><div class="title">BIM BIM模型轻量化</div></div></a></div><div><a href="/2022/04/10/html5css3/html5/" title="前端笔记 HTML5"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-10</div><div class="title">前端笔记 HTML5</div></div></a></div><div><a href="/2022/04/19/vue/vue-cli/" title="前端笔记 Vue CLI"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-19</div><div class="title">前端笔记 Vue CLI</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/favicon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">xiangxun</div><div class="author-info__description">Let there be light</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">23</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xiangxun"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%87%E5%87%86%E7%9B%92%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.</span> <span class="toc-text">标准盒模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%96%E8%BE%B9%E8%B7%9D-margin"><span class="toc-number">2.</span> <span class="toc-text">外边距 margin</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%96%E8%BE%B9%E8%B7%9D%E6%8A%98%E5%8F%A0"><span class="toc-number">2.1.</span> <span class="toc-text">外边距折叠</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%B9%E6%A1%86-border"><span class="toc-number">3.</span> <span class="toc-text">边框 border</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E8%BE%B9%E8%B7%9D-padding"><span class="toc-number">4.</span> <span class="toc-text">内边距 padding</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%BF%E4%BB%A3%EF%BC%88IE%EF%BC%89%E7%9B%92%E6%A8%A1%E5%9E%8B"><span class="toc-number">5.</span> <span class="toc-text">替代（IE）盒模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E9%BB%98%E8%AE%A4%E6%A0%B7%E5%BC%8F"><span class="toc-number">6.</span> <span class="toc-text">浏览器默认样式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E6%A1%A3%E6%B5%81-flow"><span class="toc-number">7.</span> <span class="toc-text">文档流 flow</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%92%E5%AD%90%E5%B8%83%E5%B1%80%E6%A8%A1%E5%BC%8F-display-%E5%B1%9E%E6%80%A7"><span class="toc-number">8.</span> <span class="toc-text">盒子布局模式 : display 属性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-number">8.1.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Outer-Display-Roles-for-Flow-Layou"><span class="toc-number">8.2.</span> <span class="toc-text">Outer Display Roles for Flow Layou</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#display-legacy"><span class="toc-number">8.3.</span> <span class="toc-text">display-legacy</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">9.</span> <span class="toc-text">参考资料</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/05/03/javascript/promise/" title="前端笔记 Promise"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="前端笔记 Promise"/></a><div class="content"><a class="title" href="/2022/05/03/javascript/promise/" title="前端笔记 Promise">前端笔记 Promise</a><time datetime="2022-05-03T14:44:01.000Z" title="发表于 2022-05-03 22:44:01">2022-05-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/01/javascript/ajax/" title="前端笔记 AJAX"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="前端笔记 AJAX"/></a><div class="content"><a class="title" href="/2022/05/01/javascript/ajax/" title="前端笔记 AJAX">前端笔记 AJAX</a><time datetime="2022-05-01T14:41:32.000Z" title="发表于 2022-05-01 22:41:32">2022-05-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/26/vue/vue-router/" title="前端笔记 Vue 路由"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="前端笔记 Vue 路由"/></a><div class="content"><a class="title" href="/2022/04/26/vue/vue-router/" title="前端笔记 Vue 路由">前端笔记 Vue 路由</a><time datetime="2022-04-26T15:11:21.000Z" title="发表于 2022-04-26 23:11:21">2022-04-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/22/vue/vue-vuex/" title="前端笔记 Vue Vuex"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="前端笔记 Vue Vuex"/></a><div class="content"><a class="title" href="/2022/04/22/vue/vue-vuex/" title="前端笔记 Vue Vuex">前端笔记 Vue Vuex</a><time datetime="2022-04-22T12:34:32.000Z" title="发表于 2022-04-22 20:34:32">2022-04-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/04/21/yu-yan-ji-chu/" title="javascript语言基础"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="javascript语言基础"/></a><div class="content"><a class="title" href="/2022/04/21/yu-yan-ji-chu/" title="javascript语言基础">javascript语言基础</a><time datetime="2022-04-21T08:32:59.981Z" title="发表于 2022-04-21 16:32:59">2022-04-21</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By xiangxun</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.css"><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'I9vx2GfvdoFGVy336Cu8Rph6-gzGzoHsz',
+      appKey: '0yYAT8MV6lXqnNDRQIsrFEv0',
+      placeholder: '欢迎评论留言',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: true,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: true,
+      path: window.location.pathname,
+      requiredFields: ["nick/mail"],
+      visitor: true
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
